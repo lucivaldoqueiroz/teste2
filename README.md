@@ -1,31 +1,46 @@
-# teste2
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Acordeão
+        </button>
+      </h2>
+    </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 93px; margin-top: 17px;">
-  <div class="container" style="padding-left: 104px;">
-    <a class="navbar-brand" href="#"><img src="caminho/do/logo.png" alt="Logo" height="54"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-      <ul class="navbar-nav mr-auto" style="margin-right: 344px;">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Item 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Item 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Item 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Item 4</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
-        </li>
-      </ul>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Primeiro</th>
+              <th scope="col">Último</th>
+              <th scope="col">Nick</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</nav>
+</div>
