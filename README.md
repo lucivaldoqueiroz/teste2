@@ -1,53 +1,70 @@
-  <div class="accordion" id="accordionExample">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Header 1 <i class="fas fa-chevron-up"></i>
-          </button>
-        </h5>
-      </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="5">
+        Itens da tabela
+        <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">
+          <i class="fa fa-angle-up"></i>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="5" style="text-align:center; background-color:blue; color:white;">Nome centralizado com fundo azul</td>
+    </tr>
+    <tr>
+      <td>Item 1</td>
+      <td>Item 2</td>
+      <td>Item 3</td>
+      <td>Item 4</td>
+      <td>Item 5</td>
+    </tr>
+    <tr>
+      <td>Item 1</td>
+      <td>Item 2</td>
+      <td>Item 3</td>
+      <td>Item 4</td>
+      <td>Item 5</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Item 1</td>
+      <td>Item 2</td>
+      <td>Item 3</td>
+      <td>Item 4</td>
+      <td>Item 5</td>
+    </tr>
+  </tfoot>
+</table>
 
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Item 1</th>
-                <th>Item 2</th>
-                <th>Item 3</th>
-                <th>Item 4</th>
-                <th>Item 5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="5" style="background-color: blue; color: white; text-align: center;">Nome centralizado com fundo azul</td>
-              </tr>
-              <tr>
-                <td>Valor 1</td>
-                <td>Valor 2</td>
-                <td>Valor 3</td>
-                <td>Valor 4</td>
-                <td>Valor 5</td>
-              </tr>
-              <tr>
-                <td>Valor 1</td>
-                <td>Valor 2</td>
-                <td>Valor 3</td>
-                <td>Valor 4</td>
-                <td>Valor 5</td>
-              </tr>
-              <tr>
-                <td>Valor 1</td>
-                <td>Valor 2</td>
-                <td>Valor 3</td>
-                <td>Valor 4</td>
-                <td>Valor 5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="collapse" id="collapseTable">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Item 1</td>
+        <td>Item 2</td>
+        <td>Item 3</td>
+        <td>Item 4</td>
+        <td>Item 5</td>
+      </tr>
+      <tr>
+        <td>Item 1</td>
+        <td>Item 2</td>
+        <td>Item 3</td>
+        <td>Item 4</td>
+        <td>Item 5</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Item 1</td>
+        <td>Item 2</td>
+        <td>Item 3</td>
+        <td>Item 4</td>
+        <td>Item 5</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
