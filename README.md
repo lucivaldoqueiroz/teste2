@@ -1,46 +1,53 @@
-<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Acordeão
-        </button>
-      </h5>
-    </div>
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Header 1 <i class="fas fa-chevron-up"></i>
+          </button>
+        </h5>
+      </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Primeiro</th>
-              <th scope="col">Último</th>
-              <th scope="col">Nick</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Item 1</th>
+                <th>Item 2</th>
+                <th>Item 3</th>
+                <th>Item 4</th>
+                <th>Item 5</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" style="background-color: blue; color: white; text-align: center;">Nome centralizado com fundo azul</td>
+              </tr>
+              <tr>
+                <td>Valor 1</td>
+                <td>Valor 2</td>
+                <td>Valor 3</td>
+                <td>Valor 4</td>
+                <td>Valor 5</td>
+              </tr>
+              <tr>
+                <td>Valor 1</td>
+                <td>Valor 2</td>
+                <td>Valor 3</td>
+                <td>Valor 4</td>
+                <td>Valor 5</td>
+              </tr>
+              <tr>
+                <td>Valor 1</td>
+                <td>Valor 2</td>
+                <td>Valor 3</td>
+                <td>Valor 4</td>
+                <td>Valor 5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
