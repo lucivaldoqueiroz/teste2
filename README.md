@@ -49,3 +49,30 @@
     </tbody>
   </table>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .data }}
+    <tr>
+      <td>
+        <a data-toggle="collapse" href="#collapse{{ .id }}" role="button" aria-expanded="false" aria-controls="collapse{{ .id }}">
+          {{ .nome }}
+        </a>
+      </td>
+      <td>{{ .descricao }}</td>
+    </tr>
+    <tr class="collapse" id="collapse{{ .id }}">
+      <td colspan="2">
+        <!-- Conteúdo expandido para o item -->
+        Conteúdo expandido para {{ .nome }}
+      </td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
