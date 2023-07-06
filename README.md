@@ -1,61 +1,56 @@
-Configuração:
-Certifique-se de ter configurado o parâmetro "paginate" no arquivo de configuração do seu site. Por exemplo, adicione a seguinte linha ao arquivo config.toml:
+<!-- Código para a páginação -->
 
-toml
-Copy code
-paginate = 10
-Criação do arquivo content/docs/_index.md com o seguinte conteúdo:
+<!DOCTYPE html>
+<html>
 
-markdown
-Copy code
----
-title: "Documentação"
----
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</head>
 
-{{< jsonshortcode >}}
+<body>
+  <div class="pagination-container d-flex flex-row align-items-center">
+    <span class="mr-2">Itens por página:</span>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        10
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">10</a>
+        <a class="dropdown-item" href="#">20</a>
+        <a class="dropdown-item" href="#">30</a>
+        <!-- Adicione outras opções de quantidade de itens por página aqui -->
+      </div>
+    </div>
+    <span class="mx-2">|</span>
+    <span class="mr-2">1-10 de x itens</span>
+    <span class="mx-2">|</span>
+    <button class="btn btn-primary mr-2">
+      <
+    </button>
+    <button class="btn btn-primary">
+      >
+    </button>
+  </div>
 
-{{ partial "pagination.html" . }}
-Criação do arquivo layouts/partials/pagination.html com o seguinte conteúdo:
+  <div class="content-container">
+    {{ $itemsPerPage := 10 }}
+    {{ $currentPage := .Paginator.PageNumber }}
+    {{ $start := multiply (subtract $currentPage 1) $itemsPerPage }}
+    {{ $end := add $start $itemsPerPage }}
+    {{ $data := .Site.Data.conteudo }}
+    {{ range $index, $item := $data }}
+    {{ if and (ge $index $start) (lt $index $end) }}
+    <div class="item">
+      <h2>{{ $item.title }}</h2>
+      <p>{{ $item.content }}</p>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</body>
 
-html
-Copy code
-{{ $paginator := .Paginator }}
-{{ with $paginator.HasPrev }}
-  <a href="{{ $paginator.Prev.URL }}">Anterior</a>
-{{ end }}
-{{ with $paginator.HasNext }}
-  <a href="{{ $paginator.Next.URL }}">Próxima</a>
-{{ end }}
-Criação do arquivo layouts/shortcodes/jsonshortcode.html com o seguinte conteúdo:
+</html>
 
-html
-Copy code
-{{ $jsonData := readFile "data/docs.json" | parseJSON }}
-{{ $currentPage := .PageNumber }}
-{{ $pageSize := .Site.Params.paginate }}
-{{ $start := mul $currentPage $pageSize }}
-{{ $end := add $start $pageSize }}
-{{ $data := slice $jsonData $start $end }}
-{{ range $data }}
-  <h2>{{ .title }}</h2>
-  <p>{{ .summary }}</p>
-{{ end }}
-Criação do arquivo data/docs.json com o seguinte conteúdo:
-
-json
-Copy code
-[
-  {
-    "title": "Título da Página 1",
-    "summary": "Resumo da Página 1"
-  },
-  {
-    "title": "Título da Página 2",
-    "summary": "Resumo da Página 2"
-  },
-  {
-    "title": "Título da Página 3",
-    "summary": "Resumo da Página 3"
-  },
-  ...
-]
+<!-- Código para a páginação -->
