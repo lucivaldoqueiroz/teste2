@@ -1,7 +1,11 @@
-<!-- Código para a páginação -->
+[params]
+  paginate = {{ .Site.Params.itemsPerPage }}
 
-<!DOCTYPE html>
-<html>
+  {{- $itemsPerPage := .Site.Params.itemsPerPage -}}
+{{- $currentPage := .Paginator.PageNumber -}}
+{{- $start := multiply (subtract $currentPage 1) $itemsPerPage -}}
+{{- $end := add $start $itemsPerPage -}}
+{{- $totalItems := len .Data.rankings -}}
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
@@ -9,48 +13,33 @@
 </head>
 
 <body>
+  {{ range $ranking := .Paginator.Pages }}
+  <h1>{{ $ranking.Params.titulo }}</h1>
+  <h1>{{ $ranking.Params.canal }}</h1>
+  {{ end }}
+
   <div class="pagination-container d-flex flex-row align-items-center">
     <span class="mr-2">Itens por página:</span>
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        10
+        {{ $itemsPerPage }}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">10</a>
-        <a class="dropdown-item" href="#">20</a>
-        <a class="dropdown-item" href="#">30</a>
-        <!-- Adicione outras opções de quantidade de itens por página aqui -->
+        <a class="dropdown-item" href="{{ .Permalink }}">{{ $itemsPerPage }}</a>
+        <a class="dropdown-item" href="{{ .Permalink }}?itemsPerPage=20">20</a>
+        <a class="dropdown-item" href="{{ .Permalink }}?itemsPerPage=30">30</a>
+        <!-- Add other options for items per page here -->
       </div>
     </div>
     <span class="mx-2">|</span>
-    <span class="mr-2">1-10 de x itens</span>
+    <span class="mr-2">{{ $start }}-{{ $end }} of {{ $totalItems }} items</span>
     <span class="mx-2">|</span>
-    <button class="btn btn-primary mr-2">
-      <
-    </button>
-    <button class="btn btn-primary">
-      >
-    </button>
-  </div>
-
-  <div class="content-container">
-    {{ $itemsPerPage := 10 }}
-    {{ $currentPage := .Paginator.PageNumber }}
-    {{ $start := multiply (subtract $currentPage 1) $itemsPerPage }}
-    {{ $end := add $start $itemsPerPage }}
-    {{ $data := .Site.Data.conteudo }}
-    {{ range $index, $item := $data }}
-    {{ if and (ge $index $start) (lt $index $end) }}
-    <div class="item">
-      <h2>{{ $item.title }}</h2>
-      <p>{{ $item.content }}</p>
-    </div>
+    {{ if gt $currentPage 1 }}
+    <a class="btn btn-primary mr-2" href="{{ .Paginator.Prev.URL }}">Previous</a>
     {{ end }}
+    {{ if lt $currentPage .Paginator.TotalPages }}
+    <a class="btn btn-primary" href="{{ .Paginator.Next.URL }}">Next</a>
     {{ end }}
   </div>
 </body>
-
-</html>
-
-<!-- Código para a páginação -->
