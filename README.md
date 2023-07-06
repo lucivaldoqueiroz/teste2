@@ -1,49 +1,61 @@
-## Meu conteúdo
+Configuração:
+Certifique-se de ter configurado o parâmetro "paginate" no arquivo de configuração do seu site. Por exemplo, adicione a seguinte linha ao arquivo config.toml:
 
-Aqui está o conteúdo da minha página.
+toml
+Copy code
+paginate = 10
+Criação do arquivo content/docs/_index.md com o seguinte conteúdo:
 
-{{ range .Paginator.Pages }}
-  {{ range .Data.items }}
-    - {{ .nome }}
-  {{ end }}
-{{ end }}
+markdown
+Copy code
+---
+title: "Documentação"
+---
+
+{{< jsonshortcode >}}
 
 {{ partial "pagination.html" . }}
+Criação do arquivo layouts/partials/pagination.html com o seguinte conteúdo:
 
-Passo 3 
-
+html
+Copy code
 {{ $paginator := .Paginator }}
-{{ $currentPage := .Paginator.PageNumber }}
-{{ $totalPages := .Paginator.TotalPages }}
+{{ with $paginator.HasPrev }}
+  <a href="{{ $paginator.Prev.URL }}">Anterior</a>
+{{ end }}
+{{ with $paginator.HasNext }}
+  <a href="{{ $paginator.Next.URL }}">Próxima</a>
+{{ end }}
+Criação do arquivo layouts/shortcodes/jsonshortcode.html com o seguinte conteúdo:
 
-<div class="pagination-container d-flex flex-row align-items-center">
-  <span class="mr-2">Itens por página:</span>
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      {{ $paginator.PageSize }}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {{ range .Site.Params.paginationOptions }}
-        <a class="dropdown-item" href="{{ $paginator.PermalinkWithPageSize . }}">{{ . }}</a>
-      {{ end }}
-    </div>
-  </div>
-  <span class="mx-2">|</span>
-  <span class="mr-2">{{ $paginator.FirstItemIndex }}-{{ $paginator.LastItemIndex }} de {{ $paginator.TotalCount }} itens</span>
-  <span class="mx-2">|</span>
-  {{ if gt $currentPage 1 }}
-    <a href="{{ $paginator.Prev.URL }}" class="btn btn-primary mr-2">&lt;</a>
-  {{ end }}
-  {{ if lt $currentPage $totalPages }}
-    <a href="{{ $paginator.Next.URL }}" class="btn btn-primary">&gt;</a>
-  {{ end }}
-</div>
-Personalize o estilo e a aparência do HTML e do CSS de acordo com suas necessidades.
-Ao executar o Hugo para gerar o site, a página personalizada mypage.md será processada e a paginação será gerada automaticamente com base nos parâmetros definidos. O conteúdo da página será exibido de acordo com a quantidade de itens por página, e os botões de página anterior e próxima permitirão navegar pelos itens paginados.
+html
+Copy code
+{{ $jsonData := readFile "data/docs.json" | parseJSON }}
+{{ $currentPage := .PageNumber }}
+{{ $pageSize := .Site.Params.paginate }}
+{{ $start := mul $currentPage $pageSize }}
+{{ $end := add $start $pageSize }}
+{{ $data := slice $jsonData $start $end }}
+{{ range $data }}
+  <h2>{{ .title }}</h2>
+  <p>{{ .summary }}</p>
+{{ end }}
+Criação do arquivo data/docs.json com o seguinte conteúdo:
 
-
-
-
-
-
+json
+Copy code
+[
+  {
+    "title": "Título da Página 1",
+    "summary": "Resumo da Página 1"
+  },
+  {
+    "title": "Título da Página 2",
+    "summary": "Resumo da Página 2"
+  },
+  {
+    "title": "Título da Página 3",
+    "summary": "Resumo da Página 3"
+  },
+  ...
+]
