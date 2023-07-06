@@ -1,78 +1,49 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-        <th>Header 4</th>
-        <th>Header 5</th>
-        <th>
-          <button class="btn btn-link" data-toggle="collapse" data-target="#tableCollapse" aria-expanded="false" aria-controls="tableCollapse">
-            <i class="fa fa-chevron-down"></i>
-          </button>
-        </th>
-      </tr>
-    </thead>
-    <tbody id="tableCollapse" class="collapse">
-      <tr>
-        <td>Item 1</td>
-        <td>Item 2</td>
-        <td>Item 3</td>
-        <td>Item 4</td>
-        <td>Item 5</td>
-        <td>
-          <button class="btn btn-link" data-toggle="collapse" data-target="#tableCollapse" aria-expanded="true" aria-controls="tableCollapse">
-            <i class="fa fa-chevron-up"></i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6" class="bg-primary text-center">Header 2</td>
-      </tr>
-      <tr>
-        <td>Item 6</td>
-        <td>Item 7</td>
-        <td>Item 8</td>
-        <td>Item 9</td>
-        <td>Item 10</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Item 11</td>
-        <td>Item 12</td>
-        <td>Item 13</td>
-        <td>Item 14</td>
-        <td>Item 15</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+## Meu conteúdo
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{ range .data }}
-    <tr>
-      <td>
-        <a data-toggle="collapse" href="#collapse{{ .id }}" role="button" aria-expanded="false" aria-controls="collapse{{ .id }}">
-          {{ .nome }}
-        </a>
-      </td>
-      <td>{{ .descricao }}</td>
-    </tr>
-    <tr class="collapse" id="collapse{{ .id }}">
-      <td colspan="2">
-        <!-- Conteúdo expandido para o item -->
-        Conteúdo expandido para {{ .nome }}
-      </td>
-    </tr>
-    {{ end }}
-  </tbody>
-</table>
+Aqui está o conteúdo da minha página.
+
+{{ range .Paginator.Pages }}
+  {{ range .Data.items }}
+    - {{ .nome }}
+  {{ end }}
+{{ end }}
+
+{{ partial "pagination.html" . }}
+
+Passo 3 
+
+{{ $paginator := .Paginator }}
+{{ $currentPage := .Paginator.PageNumber }}
+{{ $totalPages := .Paginator.TotalPages }}
+
+<div class="pagination-container d-flex flex-row align-items-center">
+  <span class="mr-2">Itens por página:</span>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      {{ $paginator.PageSize }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {{ range .Site.Params.paginationOptions }}
+        <a class="dropdown-item" href="{{ $paginator.PermalinkWithPageSize . }}">{{ . }}</a>
+      {{ end }}
+    </div>
+  </div>
+  <span class="mx-2">|</span>
+  <span class="mr-2">{{ $paginator.FirstItemIndex }}-{{ $paginator.LastItemIndex }} de {{ $paginator.TotalCount }} itens</span>
+  <span class="mx-2">|</span>
+  {{ if gt $currentPage 1 }}
+    <a href="{{ $paginator.Prev.URL }}" class="btn btn-primary mr-2">&lt;</a>
+  {{ end }}
+  {{ if lt $currentPage $totalPages }}
+    <a href="{{ $paginator.Next.URL }}" class="btn btn-primary">&gt;</a>
+  {{ end }}
+</div>
+Personalize o estilo e a aparência do HTML e do CSS de acordo com suas necessidades.
+Ao executar o Hugo para gerar o site, a página personalizada mypage.md será processada e a paginação será gerada automaticamente com base nos parâmetros definidos. O conteúdo da página será exibido de acordo com a quantidade de itens por página, e os botões de página anterior e próxima permitirão navegar pelos itens paginados.
+
+
+
+
+
+
